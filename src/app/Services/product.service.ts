@@ -11,9 +11,9 @@ export class ProductService {
 Add(data:product){
 let formData=new FormData();
 formData.append('productname',data.productname);
-formData.append('ImageFile',data.ImageFile);
+formData.append('ImageFile',data.ImageFile ?? "");
 return this.http.post<status>(this.BaseUrl + '/Add',formData)
-},
+}
 getall(){
   return this.http.get<product[]>(this.BaseUrl + '/getall');
 }
