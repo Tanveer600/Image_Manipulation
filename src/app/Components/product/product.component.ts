@@ -27,15 +27,17 @@ onpost(){
   this.status={StatusCode:0,Message:"please wait"};
 const frmData:product=Object.assign(this.frm.value);
 frmData.ImageFile=this.ImageFile;
-this.ProductServiuce.Add(frmData).subscribe({
-  next:(res)=>{
-    this.status=res;
-  },error:(err)=>{
-console.log(err);
-debugger;
-this.status={StatusCode:0,Message:"error on server side"};
+this.ProductServiuce.add(frmData).subscribe({
+  next: (res) => {
+      this.status = res;
+  },
+  error: (err) => {
+      console.error('API Error:', err);
+      debugger;
+      this.status = { StatusCode: 0, Message: "Error on server side" };
   }
-})
+});
+
 }
 
 OnChange(event:any){
@@ -45,7 +47,7 @@ this.ImageFile=event.target.files[0];
   ngOnInit(): void {
     this.frm=this.fb.group({
       'id':[0],
-      'productname':['',Validators.required],
+      'ProductName':['',Validators.required],
       'filename':['']
     })
   };

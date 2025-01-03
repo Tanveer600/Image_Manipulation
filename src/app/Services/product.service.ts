@@ -7,15 +7,19 @@ import { status } from '../interfaces/status';
   providedIn: 'root'
 })
 export class ProductService {
- private BaseUrl=environment.BaseUrl + '/api'; 
-Add(data:product){
+  
+ private BaseUrl=environment.BaseUrl+'/api/products'; 
+ get baseUrl(): string {
+  return this.BaseUrl;
+}
+add(data:product){
 let formData=new FormData();
-formData.append('productname',data.productname);
+formData.append('ProductName',data.ProductName);
 formData.append('ImageFile',data.ImageFile ?? "");
-return this.http.post<status>(this.BaseUrl + '/Add',formData)
+return this.http.post<status>(this.BaseUrl,formData)
 }
 getall(){
-  return this.http.get<product[]>(this.BaseUrl + '/getall');
+  return this.http.get<product[]>(this.BaseUrl);
 }
   constructor(private http:HttpClient) { }
 }

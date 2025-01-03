@@ -1,6 +1,6 @@
 export interface product{
     id:number,
-    productname:string,
-    productimageurl:string,
+    ProductName:string,
+    ProductImage:string,
     ImageFile?:File
 }
